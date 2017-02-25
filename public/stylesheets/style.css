@@ -1,0 +1,28 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#cmdline {
+	padding: 10px 0;
+}
+
+
+#main {
+	margin:auto;
+}
+
+#snapshot {
+	float:left;
+	width:240px;
+}
+
+
+#settings {
+	float: right;
+	
+
+}

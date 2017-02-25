@@ -1,0 +1,93 @@
+<div id="cmdline">
+	<form action="/capture" method="POST" name="capture" id="capture">
+		<input type="submit" value="capture">			
+		command line : {{commandline}}
+	</form>
+</div>
+<div id="main">
+	<div id="snapshot">
+		<img src="/{{image}}" style="width:1000px;height:750px">
+	</div>
+	<div id="settings">
+	<!--
+		<form action="/configure" method="POST" name="configure" id="configure">
+			<table>
+				<tr>
+					<td>sharpness (-100 to 100)</td>
+					<td><input type="text" size="5" name="sharpness" value="{{params.sharpness}}"></td>
+				</tr>
+				<tr>
+					<td>contrast (-100 to 100)</td>
+					<td><input type="text" size="5" name="contrast" value="{{params.contrast}}"></td>
+				</tr>
+				<tr>
+					<td>brightness (0 to 100)</td>
+					<td><input type="text" size="5" name="brightness" value="{{params.brightness}}"></td>
+				</tr>
+				<tr>
+					<td>saturation (0 to 100)</td>
+					<td><input type="text" size="5" name="saturation" value="{{params.saturation}}"></td>
+				</tr>		
+				<tr>
+					<td>capture ISO</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Set EV compensation - steps of 1/6 stop</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>exposure mode</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>AWB mode</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>effect</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>colour effect (U:V)</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>metering mode</td>
+					<td></td>
+				</tr> 
+				<tr>
+					<td>region of interest (x,y,w,d as normalised coordinates [0.0-1.0])</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>shutter speed (µsec)</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>AWB gains - AWB mode must be off</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>DRC Level</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Force recomputation of statistics on stills capture pass</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Half width/height of stereo image</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>extra annotation parameters (text size, text colour(hex YUV), bg colour(hex YUV))</td>
+					<td></td>
+				</tr>
+			</table>
+			 <input type="submit" value="configure">
+		</form>
+		-->
+	</div>
+</div>
+
