@@ -1,0 +1,11 @@
+[Unit]
+Description=raspcamcfg service
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/local/bin/node /home/pi/raspcamcfg/bin/www
+
+[Install]
+WantedBy=multi-user.target
+
