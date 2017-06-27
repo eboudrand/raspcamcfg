@@ -72,13 +72,7 @@ router.get('/version', function(req,res,next) {
 
 router.get('/halt', function(req,res,next){
 
-	console.log('executing ' + process.cwd() + '/bin/halt');
-	child.execFile(process.cwd() + '/bin/halt',(error, stdout, stderr) => {
-		if (error) {
-	  		throw error;
-		}
-		console.log(stdout);
-	});
+	require('child_process').exec('halt -p', console.log);
 
 	var raspstillcmdline = raspstillbin + " " + raspstillargs + " " + raspstillargsimage;
 	res.render('index', {
