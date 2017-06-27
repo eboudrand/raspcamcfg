@@ -8,11 +8,13 @@ var app = require('../app');
 var debug = require('debug')('raspcamera:server');
 var http = require('http');
 
+var pkg = require('../app.json');
+
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || pkg.port || '3011');
 app.set('port', port);
 
 /**

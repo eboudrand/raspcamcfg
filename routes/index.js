@@ -2,6 +2,9 @@
 var child = require('child_process');
 var express = require('express');
 var router = express.Router();
+var config = require('../app.json');
+var pkg = require('../package.json');
+var os = require("os");
 
 
 
@@ -58,6 +61,34 @@ router.post('/capture', function(req, res, next) {
 
 });
 
+
+router.get('/version', function(req,res,next) {
+
+	var data = { 'version': pkg.version, 'id': os.hostname() };
+	res.send(data);
+
+});
+
+
+router.get('/halt', function(req,res,next){
+
+	console.log('executing ' + process.cwd() + '/bin/halt');
+	child.execFile(process.cwd() + '/bin/halt',(error, stdout, stderr) => {
+		if (error) {
+	  		throw error;
+		}
+		console.log(stdout);
+	});
+
+	var raspstillcmdline = raspstillbin + " " + raspstillargs + " " + raspstillargsimage;
+	res.render('index', {
+		title: 'raspcamcfg',
+		commandline: raspstillcmdline,
+		image: 'snapshots/image.jpg',
+		params: settings
+	});
+
+});
 
 
 module.exports = router;
