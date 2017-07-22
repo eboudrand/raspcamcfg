@@ -64,7 +64,8 @@ router.post('/capture', function(req, res, next) {
 
 router.get('/version', function(req,res,next) {
 
-	var data = { 'version': pkg.version, 'id': os.hostname() };
+	var data = { 'id': os.hostname(), 'version': pkg.version, 'ips': os.networkInterfaces(),
+				'ostype':os.type(), 'arch': os.arch(), 'osversion': os.release() };
 	res.send(data);
 
 });
