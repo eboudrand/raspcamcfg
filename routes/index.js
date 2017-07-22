@@ -64,8 +64,15 @@ router.post('/capture', function(req, res, next) {
 
 router.get('/version', function(req,res,next) {
 
-	var data = { 'id': os.hostname(), 'version': pkg.version, 'ips': os.networkInterfaces(),
-				'ostype':os.type(), 'arch': os.arch(), 'osversion': os.release() };
+	//var data = { 'id': os.hostname(), 'version': pkg.version, 'ips': os.networkInterfaces(),
+	//			'ostype':os.type(), 'arch': os.arch(), 'osversion': os.release() };
+	
+	var data = { id: os.hostname(), version: pkg.version, ipv4: "inconnue", ipv6: "inconnue", ostype: os.type(), arch: os.arch(), osversion: os.release()  };
+	var ifs = os.networkInterfaces();
+	if(ifs && ifs.eth0 && ifs.eth0[0] && ifs.eth0[0].address && ifs.eth0[0].family=="IPv4")
+		data.ipv4 = ifs.eth0[0].address;
+	if(ifs && ifs.eth0 && ifs.eth0[1] && ifs.eth0[1].address && ifs.eth0[1].family=="IPv6")
+		data.ipv6 = ifs.eth0[1].address;	
 	res.send(data);
 
 });
