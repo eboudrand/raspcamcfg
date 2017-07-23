@@ -82,13 +82,18 @@ router.get('/halt', function(req,res,next){
 
 	require('child_process').exec('halt -p', console.log);
 
-	var raspstillcmdline = raspstillbin + " " + raspstillargs + " " + raspstillargsimage;
-	res.render('index', {
-		title: 'raspcamcfg',
-		commandline: raspstillcmdline,
-		image: 'snapshots/image.jpg',
-		params: settings
-	});
+	var data = "arrêt en cours";
+	res.send(data);
+
+});
+
+
+router.get('/reboot', function(req,res,next){
+
+	require('child_process').exec('reboot', console.log);
+
+	var data = "redémarrage en cours";
+	res.send(data);
 
 });
 
