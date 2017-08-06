@@ -90,7 +90,7 @@ router.get('/halt', function(req,res,next){
 
 router.get('/reboot', function(req,res,next){
 
-	require('child_process').exec('reboot', console.log);
+	require('child_process').exec('halt --reboot', console.log);
 
 	var data = "redémarrage en cours";
 	res.send(data);
