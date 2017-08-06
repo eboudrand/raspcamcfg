@@ -67,7 +67,7 @@ router.get('/version', function(req,res,next) {
 	//var data = { 'id': os.hostname(), 'version': pkg.version, 'ips': os.networkInterfaces(),
 	//			'ostype':os.type(), 'arch': os.arch(), 'osversion': os.release() };
 	
-	var data = { id: os.hostname(), version: pkg.version, ipv4: "inconnue", ipv6: "inconnue", ostype: os.type(), arch: os.arch(), osversion: os.release()  };
+	var data = { id: os.hostname(), version: pkg.version + '-' + config.lastcommit, ipv4: "inconnue", ipv6: "inconnue", ostype: os.type(), arch: os.arch(), osversion: os.release()  };
 	var ifs = os.networkInterfaces();
 	if(ifs && ifs.eth0 && ifs.eth0[0] && ifs.eth0[0].address && ifs.eth0[0].family=="IPv4")
 		data.ipv4 = ifs.eth0[0].address;

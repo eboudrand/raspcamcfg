@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var config = require('./app.json');
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -42,5 +44,15 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+require('child_process').exec('git log -1 --format=format:\'%h\'',(error,stdout,stderr) => {
+    if(stdout) {
+        config.lastcommit = stdout;
+        //console.log(stdout);
+    }
+  }
+);
+
 
 module.exports = app;
