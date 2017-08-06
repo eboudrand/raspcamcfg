@@ -98,4 +98,13 @@ router.get('/reboot', function(req,res,next){
 });
 
 
+router.get('/update', function(req,res,next) {
+	
+	require('child_process').exec('cd /home/pi/raspcamcfg/; git pull; sudo systemctl restart raspcamcfg', console.log);
+	var data = "mise à jour du logiciel en cours";
+	res.send(data);
+	
+});
+
+
 module.exports = router;

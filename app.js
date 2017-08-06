@@ -46,7 +46,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-require('child_process').exec('git log -1 --format=format:\'%h\'',(error,stdout,stderr) => {
+require('child_process').exec('cd /home/pi/raspcamcfg;git log -1 --format=format:\'%h\'',(error,stdout,stderr) => {
     if(stdout) {
         config.lastcommit = stdout;
         //console.log(stdout);
