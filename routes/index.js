@@ -17,6 +17,8 @@ var raspstillbin = "raspistill";
 var raspstillargsimage = "-o /home/pi/raspcamcfg/public/snapshots/image.jpg";
 var raspstillargs = "";
 
+var bUpdate = false;
+
 
 function cmdline_build() {
 	
@@ -67,7 +69,10 @@ router.get('/version', function(req,res,next) {
 	//var data = { 'id': os.hostname(), 'version': pkg.version, 'ips': os.networkInterfaces(),
 	//			'ostype':os.type(), 'arch': os.arch(), 'osversion': os.release() };
 	
-	var data = { id: os.hostname(), version: pkg.version + '-' + config.lastcommit, ipv4: "inconnue", ipv6: "inconnue", ostype: os.type(), arch: os.arch(), osversion: os.release()  };
+	var data = { id: os.hostname(), version: pkg.version + '-' + config.lastcommit, 
+				ipv4: "inconnue", ipv6: "inconnue", 
+				ostype: os.type(), arch: os.arch(), osversion: os.release(), 
+				update: bUpdate, lastupgrade: config.lastupgrade };
 	var ifs = os.networkInterfaces();
 	if(ifs && ifs.eth0 && ifs.eth0[0] && ifs.eth0[0].address && ifs.eth0[0].family=="IPv4")
 		data.ipv4 = ifs.eth0[0].address;
@@ -100,8 +105,39 @@ router.get('/reboot', function(req,res,next){
 
 router.get('/update', function(req,res,next) {
 	
-	require('child_process').exec('cd /home/pi/raspcamcfg/; git pull; sudo systemctl restart raspcamcfg', console.log);
+	console.log("MAJ du logiciel demandée");
+	require('child_process').exec('cd /home/pi/raspcamcfg/; git pull; sudo systemctl restart raspcamcfg', 
+									(error, stdout, stderr) => {
+										if(error)
+										{
+											console.error(`exec error: ${error}`);
+											return;
+										}
+										bUpdate = false;
+										console.log("fin de la MAJ du logiciel");
+									} );
+	bUpdate = true;
 	var data = "mise à jour du logiciel en cours";
+	res.send(data);
+	
+});
+
+
+router.get('/upgrade', function(req,res,next) {
+	
+	console.log("MAJ du système demandée");
+	require('child_process').exec('sudo apt-get update; sudo apt-get -y upgrade; sudo reboot', 
+									(error, stdout, stderr) => {
+										if(error)
+										{
+											console.error(`exec error: ${error}`);
+											return;
+										}
+										bUpdate = false;
+										console.log("fin de la MAJ du système");
+									} );
+	bUpdate = true;
+	var data = "mise à jour du système en cours";
 	res.send(data);
 	
 });

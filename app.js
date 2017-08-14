@@ -54,5 +54,13 @@ require('child_process').exec('cd /home/pi/raspcamcfg;git log -1 --format=format
   }
 );
 
+require('child_process').exec('tail -1 /var/log/apt/history.log | cut -d\' \' -f2,4',(error,stdout,stderr) => {
+    if(stdout) {
+        config.lastupgrade = stdout;
+        //console.log(stdout);
+    }
+  }
+)
+
 
 module.exports = app;
