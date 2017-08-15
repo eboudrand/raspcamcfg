@@ -36,3 +36,10 @@ if [ -e install/raspcamcfg.service ]; then
    systemctl start raspcamcfg.service
 fi
 
+if [ -e node-v6.10.0-linux-armv6l.tar.xz ]
+then
+	echo "suppression de node-v6.10.0-linux-armv6l.tar.xz"
+	rm -v node-v6.10.0-linux-armv6l.tar.xz
+fi
+test -d node-v6.10.0-linux-armv6l && rm -rvf node-v6.10.0-linux-armv6l
+
