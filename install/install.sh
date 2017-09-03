@@ -1,23 +1,24 @@
 #!/bin/bash
 
+NODEVER=6.10.0
 
-if [ -e node-v6.10.0-linux-armv6l.tar.xz ]
+if [ -e node-v$NODEVER-linux-armv6l.tar.xz ]
 then
-	echo "suppression de node-v6.10.0-linux-armv6l.tar.xz"
-	rm -v node-v6.10.0-linux-armv6l.tar.xz
+	echo "suppression de node-v$NODEVER-linux-armv6l.tar.xz"
+	rm -v node-v$NODEVER-linux-armv6l.tar.xz
 fi
-test -d node-v6.10.0-linux-armv6l && rm -rvf node-v6.10.0-linux-armv6l
+test -d node-v$NODEVER-linux-armv6l && rm -rvf node-vNODEVER-linux-armv6l
 
 VER=`node -v`
 if [ -z $VER ]
 then
-	wget https://nodejs.org/dist/v6.10.0/node-v6.10.0-linux-armv6l.tar.xz
+	wget https://nodejs.org/dist/v$NODEVER/node-v$NODEVER-linux-armv6l.tar.xz
 else
 	echo "nodejs installé version $VER"
 fi
-if [ -e node-v6.10.0-linux-armv6l.tar.xz ]; then
-	tar xvf node-v6.10.0-linux-armv6l.tar.xz
-	cd node-v6.10.0-linux-armv6l
+if [ -e node-v$NODEVER-linux-armv6l.tar.xz ]; then
+	tar xvf node-v$NODEVER-linux-armv6l.tar.xz
+	cd node-v$NODEVER-linux-armv6l
 	sudo cp -R * /usr/local/
 fi
 
@@ -36,10 +37,10 @@ if [ -e install/raspcamcfg.service ]; then
    systemctl start raspcamcfg.service
 fi
 
-if [ -e node-v6.10.0-linux-armv6l.tar.xz ]
+if [ -e node-v$NODEVER-linux-armv6l.tar.xz ]
 then
-	echo "suppression de node-v6.10.0-linux-armv6l.tar.xz"
-	rm -v node-v6.10.0-linux-armv6l.tar.xz
+	echo "suppression de node-v$NODEVER-linux-armv6l.tar.xz"
+	rm -v node-v$NODEVER-linux-armv6l.tar.xz
 fi
-test -d node-v6.10.0-linux-armv6l && rm -rvf node-v6.10.0-linux-armv6l
+test -d node-v$NODEVER-linux-armv6l && rm -rvf node-v$NODEVER-linux-armv6l
 
